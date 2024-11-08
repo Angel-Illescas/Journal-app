@@ -18,9 +18,13 @@ export const RegisterPage = () => {
   const [deaultFormState, setDeaultFormState] = useState(false)
   const dispatch = useDispatch()
   const { status, errorMessage } = useSelector(state => state.authGeneralState)
-
   const isChecking = useMemo(() => status === "checking" ? true : false, [status])
 
+  const [touchedFields, setTouchedFields] = useState({
+    displayName: false,
+    email: false,
+    password: false,
+  });
 
   const formValidated = {
     email: [(value) => value.includes('@'), "@ is required."],
@@ -33,10 +37,6 @@ export const RegisterPage = () => {
   } = useForm(dataForm, formValidated)
 
 
-  console.log(formValidatedState);
-  console.log(isFormValidated);
-  console.log(isdisplayNameValid);
-
   const HandleOnSubmitRegister = (e) => {
     e.preventDefault()
     setDeaultFormState(true)
@@ -44,6 +44,18 @@ export const RegisterPage = () => {
     dispatch(starCreateUserWithEmailPassword(formState))
 
   }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    onInputChange(e);
+    if (!touchedFields[name]) {
+      setTouchedFields({
+        ...touchedFields,
+        [name]: true,
+      });
+    }
+  };
+
 
 
 
@@ -59,7 +71,7 @@ export const RegisterPage = () => {
           component="img"
           src="/assets/img/iconLogoBgSecondary.svg"
           alt="JournalApp Logo"
-          sx={{ height: 50 }} // Ajusta el tamaño de la imagen según necesites
+          sx={{ height: 50 }} 
         />
       </Box>
       <Typography align="center" variant="h5" color="secondary" sx={{ mt: 2 }}>Register for Aurnel App</Typography>
@@ -67,41 +79,43 @@ export const RegisterPage = () => {
         <Grid container >
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
-              onChange={onInputChange}
+              onChange={handleInputChange}
               label="Name"
               type="text"
               placeholder="John Doe"
               fullWidth
               name="displayName"
               value={displayName}
-              error={!!isdisplayNameValid && deaultFormState}
-              helperText={isdisplayNameValid} /
-            >
+              error={!!isdisplayNameValid && touchedFields.displayName && deaultFormState}
+              helperText={touchedFields.displayName && isdisplayNameValid}
+            />
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
-              onChange={onInputChange}
+              onChange={handleInputChange}
               label="Email"
               type="email"
-              placeholder="correo-demo@gmail.com"
+              placeholder="email-demo@gmail.com"
               fullWidth
               name="email"
               value={email}
-              error={!!isemailValid && deaultFormState}
-              helperText={isemailValid} />
+              error={!!isemailValid && touchedFields.email && deaultFormState}
+              helperText={touchedFields.email && isemailValid}
+              />
           </Grid>
 
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
-              onChange={onInputChange}
+              onChange={handleInputChange}
               label="Password"
               type="password"
               placeholder="*********"
               fullWidth
               name="password"
               value={password}
-              error={!!ispasswordValid && deaultFormState}
-              helperText={ispasswordValid} />
+              error={!!ispasswordValid && touchedFields.password && deaultFormState}
+              helperText={touchedFields.password && ispasswordValid}
+               />
           </Grid>
 
           <Grid container display={!!errorMessage ? "" : "none"} spacing={2} sx={{ mb: 2, mt: 1 }}>
@@ -110,8 +124,8 @@ export const RegisterPage = () => {
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12} >
-              <Button variant="contained" color="primary" fullWidth type="submit" disabled={isChecking} sx={{color:'white'}}>
-              Create an account
+              <Button variant="contained" color="primary" fullWidth type="submit" disabled={isChecking} sx={{ color: 'white' }}>
+                Create an account
               </Button>
             </Grid>
 

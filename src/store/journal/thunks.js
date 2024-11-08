@@ -71,7 +71,6 @@ export const starUpdatingNote = () => {
         delete noteToFirestone.id // para no tener dos key de id en firebase
         const docRef = doc(FirebaseDB, `${uid}/journal/notes/${activeNote.id}`) //SOLO ES LA referencia
         await setDoc(docRef, noteToFirestone, { merge: true })
-        //console.log(activeNote);
         dispatch(updateNote(activeNote))
 
     }
@@ -88,7 +87,6 @@ export const starUpdateImages = (files = []) => {
         };
 
         const photoUrls = await Promise.all(arrOfUploadsPromises) // De esta manera resolvemos todas las promesas al mismo tiempo, haciendo un array de promesas
-        console.log(photoUrls);
         dispatch(sendPhotosToActiveNote(photoUrls))
     }
 }

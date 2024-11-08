@@ -15,7 +15,7 @@ const formData = {
 
 
 export const LoginPage = () => {
-
+  
   const dispatch = useDispatch()
   const { status, errorMessage } = useSelector(state => state.authGeneralState)
   const { email, password, onInputChange } = useForm(formData)
@@ -27,14 +27,14 @@ export const LoginPage = () => {
 
   const handleGoogleSignIn = (event) => {
     event.preventDefault()
-    console.log("google sign in");
+    console.log("Google sign in");
     dispatch(startGoogleSignin())
   }
 
   const typeOfError = () => {
     return errorMessage == "Firebase: Error (auth/invalid-credential)."
-      ? "Email o contraseña incorrecto"
-      : "Contacte al admin"
+      ? "Email or password incorrect"
+      : "Contact Admin"
   }
 
 

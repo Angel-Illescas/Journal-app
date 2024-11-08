@@ -19,6 +19,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
             sx={{
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
                 ml: { sm: `${drawerWidth}px` },
+                background: 'linear-gradient(90deg, rgba(36,123,160,1) 70%, rgba(55,18,60,1) 100%)'
             }}
         >
             <Toolbar>
@@ -43,7 +44,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                         sx={{ height: 30 }} // Ajusta el tamaño de la imagen según necesites
                     />
                     <IconButton color="white" onClick={handleLogOut}>
-                        <LogoutOutlined />
+                        <LogoutOutlined sx={{color:"white"}} />
                     </IconButton>
                 </Grid>
 

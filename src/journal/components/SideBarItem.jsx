@@ -1,13 +1,13 @@
 import { TurnedInNot } from '@mui/icons-material'
-import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { starSetActiveNote } from '../../store/journal';
 
 
-export const SideBarItem = ({ title, body, date, id ,imageUrl = []}) => {
+export const SideBarItem = ({ title, body, date, id, imageUrl = [] }) => {
     const dispatch = useDispatch();
-    const {active} = useSelector(state=>state.journalGeneralState)
+    const { active } = useSelector(state => state.journalGeneralState)
     const shortedTexts = useMemo(() => (text, type) => {
         switch (type) {
             case "title":
@@ -26,15 +26,30 @@ export const SideBarItem = ({ title, body, date, id ,imageUrl = []}) => {
         dispatch(starSetActiveNote({ title, body, date, id, imageUrl }))
     }
 
+    const formatedData = (date) => {
+        const newDate = new Date(date);
+        return newDate.toUTCString();
+    };
+
     return (
         <ListItem disablePadding  >
-            <ListItemButton selected={(active?.id == id)? true: false} onClick={handleOnSetActiveNote} >
+            <ListItemButton selected={(active?.id == id) ? true : false} onClick={handleOnSetActiveNote} >
                 <ListItemIcon >
-                    <TurnedInNot color='secondary' />
+                    <TurnedInNot color={(active?.id == id) ? 'tercy' : "primary"} />
                 </ListItemIcon>
                 <ListItemText
                     primary={shortedTexts(title, "title")}
-                    secondary={shortedTexts(body, "body")}
+                    secondary={
+                        <>
+                            <Typography variant="body2" color="secondary">
+                                {shortedTexts(body, "body")}
+                            </Typography>
+                            <Typography variant="caption" color="textSecondary">
+                                {formatedData(date)}
+                            </Typography>
+                        </>
+                    }
+
                     primaryTypographyProps={{
                         fontWeight: 'bold',
                         color: 'primary'

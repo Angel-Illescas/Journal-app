@@ -2,7 +2,7 @@ import { CircularProgress, Grid } from '@mui/material'
 import React from 'react'
 
 export const CheckingAuth = () => {
-    
+
     return (
         <Grid
             container
@@ -10,14 +10,16 @@ export const CheckingAuth = () => {
             direction="column"
             alignItems="center"
             justifyContent="center"
-            sx={{ minHeight: '100vh', backgroundColor: 'primary.main', padding: 4 }}>
-
-            <Grid item
+            sx={{ minHeight: '100vh', minWidth: '100vw', backgroundColor: 'primary.main', padding: 4 }}
+        >
+            <Grid
+                item
                 xs={3}
-                sx={{ padding: 3, borderRadius: 5, width: { md: 450 } }}
+                sx={{ display: 'flex', justifyContent: 'center', padding: 3, borderRadius: 5, width: { md: 450 } }}
             >
-                <CircularProgress color='warning'></CircularProgress>
+                <CircularProgress color="secondary" />
             </Grid>
         </Grid>
+
     )
 }
