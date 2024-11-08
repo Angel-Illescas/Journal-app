@@ -1,4 +1,4 @@
-import { StarOutline } from '@mui/icons-material'
+import { Bookmark,  } from '@mui/icons-material'
 import { Typography } from '@mui/material'
 import { Grid } from "@mui/material"
 
@@ -11,15 +11,15 @@ export const NothingSelectedView = () => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ minHeight: 'calc(100vh - 110px)', backgroundColor: 'primary.main', borderRadius: 3 }}
+      sx={{ minHeight: 'calc(100vh - 64px - 60px)', backgroundColor: 'primary.main', borderRadius: 3 }}
     >
 
             <Grid item xs={12}>
-                <StarOutline sx={{ fontSize: 100, color: "white" }} />
+                <Bookmark sx={{ fontSize: 100, color: "white" }}/>
             </Grid>
 
             <Grid item xs={12}>
-                <Typography color='white' variant='h5'>Selecciona una entrada</Typography>
+                <Typography color='white' variant='h5'>Select an entry</Typography>
             </Grid>
 
         </Grid>

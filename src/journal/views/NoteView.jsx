@@ -1,6 +1,6 @@
 import { SaveAsOutlined, UpdateRounded, UploadFile, UploadFileOutlined } from "@mui/icons-material"
 import DeleteIcon from '@mui/icons-material/Delete'
-import { Typography, TextField, IconButton } from "@mui/material"
+import { Typography, TextField, IconButton, Box } from "@mui/material"
 import { Grid } from "@mui/material"
 import { ImageGallery } from "../components"
 import { useForm } from './../../hooks/useForm';
@@ -49,7 +49,7 @@ export const NoteView = () => {
 
     }
 
-    const handleOnDelete = ()=>{
+    const handleOnDelete = () => {
         dispatch(startDeletingNote())
     }
 
@@ -60,30 +60,29 @@ export const NoteView = () => {
             direction='row'
             justifyContent='space-between'
             alignItems='center'
-            sx={{ height: `calc(100% - ${navBarHeight}px)` }}
+            sx={{ height: `calc(100vh - ${navBarHeight}px - 300px)` }}
             className='animate__animated animate__fadeIn animate__faster'
         >
             <Grid item>
-                <Typography fontSize={40} fontWeight='bold' color="primary" >
+                <Typography fontSize={30} fontWeight='bold' color="primary" >
                     {formatedData(formState.date)}
                 </Typography>
             </Grid>
 
-
-
-            <Grid item >
-
+            <Grid item>
                 <Button
+                    style={{display: (curretNoteActive.imageUrl.length > 1)? "":"none"}}
                     onClick={() => uploadFileRef.current.click()}
-                    color="success"
+                    color="secondary"
                     size="large"
                     disabled={isSaving}
                     component="label"
-                    role={undefined}
                     variant="contained"
-                    tabIndex={-1}
-                    startIcon={<UploadFileOutlined />}
-                >Subir Fotografías</Button>
+                    startIcon={<UploadFileOutlined sx={{ fontSize: 24 }} />}
+                    sx={{ fontSize: 16, m: 1 }}
+                >
+                    Upload photos
+                </Button>
 
                 <input
                     type="file"
@@ -93,10 +92,19 @@ export const NoteView = () => {
                     style={{ display: 'none' }}
                 />
 
-
-                <Button disabled={isSaving} onClick={handleUpdateNote} variant="contained" color="primary" sx={{ m: 2 }}> <SaveAsOutlined sx={{ fontSize: 30, mr: 1 }} /> Guardar</Button>
-                
+                <Button
+                    disabled={isSaving}
+                    onClick={handleUpdateNote}
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<SaveAsOutlined sx={{ fontSize: 24 }} />}
+                    sx={{ fontSize: 16, m: 1, color: 'white' }}
+                >
+                    Save
+                </Button>
             </Grid>
+
 
 
 
@@ -106,7 +114,7 @@ export const NoteView = () => {
                     variant="filled"
                     fullWidth
                     placeholder="Ingrese un titulo"
-                    label='Titulo'
+                    label='Title'
                     sx={{ border: 'none', mb: 1 }}
                     name="title"
                     value={formState?.title}
@@ -117,6 +125,7 @@ export const NoteView = () => {
                     variant="filled"
                     fullWidth
                     multiline
+                    label="What happened today?"
                     placeholder="Que sucedio hoy"
                     minRows={5}
                     name="body"
@@ -126,11 +135,42 @@ export const NoteView = () => {
 
             </Grid>
 
-            <ImageGallery images={curretNoteActive.imageUrl} />
+            {(curretNoteActive.imageUrl.length > 0) ? <ImageGallery images={curretNoteActive.imageUrl} /> :
+                <Grid
+                    onClick={() => uploadFileRef.current.click()}
+                    container
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                        border: '2px dashed #ccc',
+                        borderRadius: 2,
+                        height: '25vh',
+                        backgroundColor: 'rgba(0, 0, 0, 0.06)',
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        marginTop: '10px',
+                    }}
+                >
+                    <Grid item>
+                        <UploadFileOutlined sx={{ fontSize: 50, color: 'rgba(0, 0, 0, 0.50) ' }} />
+                        <Typography variant="h6" color="rgba(0, 0, 0, 0.50)">
+                            Drag and drop photos here
+                        </Typography>
+                    </Grid>
+                </Grid>}
 
-            <Button onClick={handleOnDelete} color="error" variant="contained" size="large" startIcon={<DeleteIcon />}>
-                    Eliminar nota
+
+            <Grid
+                container
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ mt: 2 }}
+            >
+                <Button onClick={handleOnDelete} color="error" variant="contained" size="large" startIcon={<DeleteIcon />}>
+                    Delete Note
                 </Button>
+            </Grid>
 
         </Grid>
     )

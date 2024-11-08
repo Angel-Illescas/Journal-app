@@ -4,7 +4,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 
 export const ImageGallery = ({images=[]}) => {
   return (
-    <ImageList sx={{ width: "100% ", height: "230px" }} cols={3} rowHeight={"auto"}>
+    <ImageList sx={{ width: "100% ", height: "25vh" }} cols={5} rowHeight={"auto"}>
       {images.map((image) => (
         <ImageListItem key={image}>
           <img

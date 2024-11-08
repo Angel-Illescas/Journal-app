@@ -29,8 +29,8 @@ export const SideBarItem = ({ title, body, date, id ,imageUrl = []}) => {
     return (
         <ListItem disablePadding  >
             <ListItemButton selected={(active?.id == id)? true: false} onClick={handleOnSetActiveNote} >
-                <ListItemIcon>
-                    <TurnedInNot />
+                <ListItemIcon >
+                    <TurnedInNot color='secondary' />
                 </ListItemIcon>
                 <ListItemText
                     primary={shortedTexts(title, "title")}
@@ -38,6 +38,9 @@ export const SideBarItem = ({ title, body, date, id ,imageUrl = []}) => {
                     primaryTypographyProps={{
                         fontWeight: 'bold',
                         color: 'primary'
+                    }}
+                    secondaryTypographyProps={{
+                        color: 'secondary'
                     }}
                 />
             </ListItemButton>

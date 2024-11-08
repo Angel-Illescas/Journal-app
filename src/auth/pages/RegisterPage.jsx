@@ -1,4 +1,4 @@
-import { Typography, TextField, Button, Link, Alert } from "@mui/material"
+import { Typography, TextField, Button, Link, Alert, Box } from "@mui/material"
 import { Link as LinkRouter } from 'react-router-dom'
 import { AuthLayout } from "../layout/AuthLayout";
 import { Grid } from "@mui/material"
@@ -17,15 +17,15 @@ export const RegisterPage = () => {
 
   const [deaultFormState, setDeaultFormState] = useState(false)
   const dispatch = useDispatch()
-  const {status,errorMessage} = useSelector(state=>state.authGeneralState)
+  const { status, errorMessage } = useSelector(state => state.authGeneralState)
 
-  const isChecking = useMemo(() => status === "checking"? true:false, [status])
+  const isChecking = useMemo(() => status === "checking" ? true : false, [status])
 
 
   const formValidated = {
-    email: [(value) => value.includes('@'), "@ is required"],
-    password: [(value) => value.length >= 6, "Contraseña debe contener mas de 6 caracteres"],
-    displayName: [(value) => value.length >= 1, "Complete name is required"]
+    email: [(value) => value.includes('@'), "@ is required."],
+    password: [(value) => value.length >= 6, "Password must contain more than 6 characters."],
+    displayName: [(value) => value.length >= 1, "Complete name is required."]
   }
 
   const { formState, email, password, displayName, onInputChange,
@@ -48,13 +48,27 @@ export const RegisterPage = () => {
 
 
   return (
-    <AuthLayout title="REGISTER">
+    <AuthLayout bgColor='secondary.main'>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Box
+          component="img"
+          src="/assets/img/iconLogoBgSecondary.svg"
+          alt="JournalApp Logo"
+          sx={{ height: 50 }} // Ajusta el tamaño de la imagen según necesites
+        />
+      </Box>
+      <Typography align="center" variant="h5" color="secondary" sx={{ mt: 2 }}>Register for Aurnel App</Typography>
       <form onSubmit={HandleOnSubmitRegister}>
         <Grid container >
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
               onChange={onInputChange}
-              label="Nombre Completo"
+              label="Name"
               type="text"
               placeholder="John Doe"
               fullWidth
@@ -67,7 +81,7 @@ export const RegisterPage = () => {
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
               onChange={onInputChange}
-              label="Correo"
+              label="Email"
               type="email"
               placeholder="correo-demo@gmail.com"
               fullWidth
@@ -80,7 +94,7 @@ export const RegisterPage = () => {
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
               onChange={onInputChange}
-              label="Contraseña"
+              label="Password"
               type="password"
               placeholder="*********"
               fullWidth
@@ -90,23 +104,23 @@ export const RegisterPage = () => {
               helperText={ispasswordValid} />
           </Grid>
 
-          <Grid container display={!!errorMessage? "":"none"} spacing={2} sx={{ mb: 2, mt: 1 }}>
+          <Grid container display={!!errorMessage ? "" : "none"} spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Alert severity="error" >{errorMessage}</Alert>
-            </Grid>
+          </Grid>
 
-            <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+          <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12} >
-              <Button variant="contained" color="primary" fullWidth type="submit" disabled={isChecking}>
-                Crear cuenta
+              <Button variant="contained" color="primary" fullWidth type="submit" disabled={isChecking} sx={{color:'white'}}>
+              Create an account
               </Button>
             </Grid>
 
 
 
-            <Grid container direction="row" justifyContent='end' sx={{ mt: 1 }}>
-              <Typography> ¿ Ya tienes cuenta ? <Link component={LinkRouter} to="/auth/login" >  Ingresar
-              </Link></Typography>
-
+            <Grid container direction="row" justifyContent='end' sx={{ mt: 2 }}>
+              <Typography color='secondary.alt'>Do you already have an account? <Link component={LinkRouter} color="secondary.main" to="/auth/login" >Log in
+              </Link>
+              </Typography>
             </Grid>
 
 

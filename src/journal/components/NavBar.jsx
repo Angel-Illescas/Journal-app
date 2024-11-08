@@ -1,4 +1,4 @@
-import { AppBar, IconButton, Toolbar, Grid, Typography } from "@mui/material"
+import { AppBar, IconButton, Toolbar, Grid, Typography, Box } from "@mui/material"
 import { LogoutOutlined, MenuOutlined } from "@mui/icons-material"
 import { useDispatch } from 'react-redux';
 import { starlogoutWithFirebase } from "../../store/auth/thunks";
@@ -36,8 +36,13 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                 </IconButton>
 
                 <Grid container direction='row' justifyContent='space-between' alignItems='center'>
-                    <Typography variant="h6" noWrap component='div'>JournalApp</Typography>
-                    <IconButton color="error" onClick={handleLogOut}>
+                    <Box
+                        component="img"
+                        src="/assets/img/Aurnel-logo-bgLight.svg"
+                        alt="JournalApp Logo"
+                        sx={{ height: 30 }} // Ajusta el tamaño de la imagen según necesites
+                    />
+                    <IconButton color="white" onClick={handleLogOut}>
                         <LogoutOutlined />
                     </IconButton>
                 </Grid>
