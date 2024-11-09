@@ -55,7 +55,7 @@ export const LoginPage = () => {
           sx={{ height: 50 }} // Ajusta el tamaño de la imagen según necesites
         />
       </Box>
-      <Typography align="center" variant="h5" color="secondary" sx={{ mt: 2 }}>Log in Aurnel App</Typography>
+      <Typography align="center" variant="h5" color="secondary" sx={{ mt: 2, fontWeight:'600' }}>Log in Aurnel App</Typography>
 
       <form onSubmit={handleOnSubmit}>
         <Grid container >
@@ -90,19 +90,19 @@ export const LoginPage = () => {
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12} sm={6}>
               <Button type="submit" variant="contained" color="primary" fullWidth disabled={status == "checking" ? true : false}>
-                <Typography color="white" sx={{ ml: 1 }}>Continue</Typography>
+                <Typography color="white" sx={{ ml: 1,fontWeight:'600' }}>Continue</Typography>
               </Button>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Button variant="contained" color="secondary" fullWidth onClick={handleGoogleSignIn} disabled={status == "checking" ? true : false}>
                 <GoogleIcon sx={{ color: 'white' }} />
-                <Typography color="white" sx={{ ml: 1 }}>Google</Typography>
+                <Typography color="white" sx={{ ml: 1,fontWeight:'600' }}>Google</Typography>
               </Button>
             </Grid>
 
 
             <Grid container direction="row" justifyContent='end' sx={{ mt: 2 }} >
-            <Typography color='secondary.alt'>Don't have an account?</Typography><Link sx={{ ml: 1 }}component={LinkRouter} to="/auth/register" color="secondary">Create an account</Link>
+            <Typography color='secondary.alt' sx={{fontWeight:'600'}}>Don't have an account?<Link sx={{ ml: 1 }}component={LinkRouter} to="/auth/register" color="secondary">Create an account</Link></Typography>
             </Grid>
 
 

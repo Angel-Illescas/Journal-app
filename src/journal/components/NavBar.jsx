@@ -39,7 +39,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                 <Grid container direction='row' justifyContent='space-between' alignItems='center'>
                     <Box
                         component="img"
-                        src="/assets/img/Aurnel-logo-bgLight.svg"
+                        src="/assets/img/logoBgWhite_1.svg"
                         alt="JournalApp Logo"
                         sx={{ height: 30 }} // Ajusta el tamaño de la imagen según necesites
                     />

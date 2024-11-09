@@ -19,7 +19,7 @@ export const NothingSelectedView = () => {
             </Grid>
 
             <Grid item xs={12}>
-                <Typography color='white' variant='h5'>Select an entry</Typography>
+                <Typography color='white' variant='h5' sx={{fontWeight:'600'}}>Select an entry</Typography>
             </Grid>
 
         </Grid>

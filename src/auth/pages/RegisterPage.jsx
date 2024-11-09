@@ -74,7 +74,7 @@ export const RegisterPage = () => {
           sx={{ height: 50 }} 
         />
       </Box>
-      <Typography align="center" variant="h5" color="secondary" sx={{ mt: 2 }}>Register for Aurnel App</Typography>
+      <Typography align="center" variant="h5" color="secondary" sx={{ mt: 2 ,fontWeight:'600'}}>Register for Aurnel App</Typography>
       <form onSubmit={HandleOnSubmitRegister}>
         <Grid container >
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -124,7 +124,7 @@ export const RegisterPage = () => {
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12} >
-              <Button variant="contained" color="primary" fullWidth type="submit" disabled={isChecking} sx={{ color: 'white' }}>
+              <Button variant="contained" color="primary" fullWidth type="submit" disabled={isChecking} sx={{ color: 'white',fontWeight:'600' }}>
                 Create an account
               </Button>
             </Grid>
@@ -132,7 +132,7 @@ export const RegisterPage = () => {
 
 
             <Grid container direction="row" justifyContent='end' sx={{ mt: 2 }}>
-              <Typography color='secondary.alt'>Do you already have an account? <Link component={LinkRouter} color="secondary.main" to="/auth/login" >Log in
+              <Typography color='secondary.alt' sx={{fontWeight:'600'}}>Do you already have an account? <Link component={LinkRouter} color="secondary.main" to="/auth/login" >Log in
               </Link>
               </Typography>
             </Grid>

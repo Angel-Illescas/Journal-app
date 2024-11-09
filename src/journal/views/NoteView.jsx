@@ -76,7 +76,7 @@ export const NoteView = () => {
                         component="label"
                         variant="contained"
                         startIcon={<UploadFileOutlined sx={{ fontSize: 24 }} />}
-                        sx={{ fontSize: 16, m: 1 }}
+                        sx={{ fontSize: 16, m: 1,fontWeight:'600' }}
                     >
                         Upload photos
                     </Button>
@@ -96,7 +96,7 @@ export const NoteView = () => {
                         color="primary"
                         size="large"
                         startIcon={<SaveAsOutlined sx={{ fontSize: 24 }} />}
-                        sx={{ fontSize: 16, m: 1, color: 'white' }}
+                        sx={{ fontSize: 16, m: 1, color: 'white',fontWeight:'600' }}
                     >
                         Save
                     </Button>
@@ -162,7 +162,7 @@ export const NoteView = () => {
                     justifyContent="center"
                     sx={{ mt: 2 }}
                 >
-                    <Button onClick={handleOnDelete} color="error" variant="contained" size="large" startIcon={<DeleteIcon />}>
+                    <Button onClick={handleOnDelete} sx={{fontWeight:'600'}} color="error" variant="contained" size="large" startIcon={<DeleteIcon />}>
                         Delete Note
                     </Button>
                 </Grid>

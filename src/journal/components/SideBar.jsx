@@ -6,9 +6,9 @@ import { SideBarItem } from "./SideBarItem"
 export const SideBar = ({ drawerWidth }) => {
 
     const {notes} = useSelector(state=>state.journalGeneralState)
-    const { displayName } = useSelector(state => state.authGeneralState)
+    const { displayName} = useSelector(state => state.authGeneralState)
 
-    const firstName = displayName.split(" ")
+    const formattedName = displayName ? displayName.split(" ").slice(0, 2).join(" ") : "";
 
     return (
         <Box
@@ -26,9 +26,9 @@ export const SideBar = ({ drawerWidth }) => {
 
                 <Toolbar >
                     <Grid container direction="column" alignItems="flex-start" >
-                        <Typography variant="h6" color="primary.main">Welcome!</Typography>
+                        <Typography variant="h6" color="primary.main" sx={{fontWeight:'600'}}>Welcome!</Typography>
                         <Typography variant="p" noWrap sx={{ mt: -1 }}  color="secondary.main">
-                            {firstName[0] + " " + firstName[1]}
+                        {formattedName}
                         </Typography>
                     </Grid>
                 </Toolbar>
